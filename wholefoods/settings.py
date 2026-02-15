@@ -21,12 +21,18 @@ DEBUG = "DEBUG" in os.environ
 
 # DEBUG = False
 
+RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+
 ALLOWED_HOSTS = [
     "8000-monicaular-wholesomebas-d6fccy3ilk8.ws.codeinstitute-ide.net",
     ".herokuapp.com",
     "8000-monicaular-wholesomebas-4poe6kbejh7.ws.codeinstitute-ide.net",
-    "*",
+    "localhost",
+    "127.0.0.1",
 ]
+
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -60,6 +66,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -174,6 +181,10 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+if "USE_AWS" not in os.environ:
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -228,5 +239,8 @@ if "USE_AWS" in os.environ:
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-monicaular-wholesomebas-4poe6kbejh7.ws.codeinstitute-ide.net"
+    "https://8000-monicaular-wholesomebas-4poe6kbejh7.ws.codeinstitute-ide.net",
 ]
+
+if RENDER_EXTERNAL_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS.append(f"https://{RENDER_EXTERNAL_HOSTNAME}")
