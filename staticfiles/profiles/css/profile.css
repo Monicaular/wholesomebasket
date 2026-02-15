@@ -1,0 +1,49 @@
+.order-history {
+    max-height: 416px;
+    overflow-y: auto;
+}
+
+#profile-update-form .form-control {
+    color: #000;
+}
+
+#profile-update-form input::placeholder {
+    color: #aab7c4;
+}
+
+#id_default_country,
+#id_default_country option:not(:first-child) {
+    color: #000;
+}
+
+#id_default_country option:first-child {
+    color: #aab7c4;
+}
+
+/* Account Information Styling */
+
+.account-info-container {
+    background-color: rgba(215, 204, 200, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.account-info-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.account-info-container p {
+    margin: 5px 0;
+}
+
+#toggle-update-form {
+    margin-top: 15px;
+}
+
+/* Styles for the form if required */
+#update-form {
+    margin-top: 15px;
+}
