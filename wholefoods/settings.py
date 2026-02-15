@@ -25,6 +25,7 @@ ALLOWED_HOSTS = [
     "8000-monicaular-wholesomebas-d6fccy3ilk8.ws.codeinstitute-ide.net",
     ".herokuapp.com",
     "8000-monicaular-wholesomebas-4poe6kbejh7.ws.codeinstitute-ide.net",
+    "*",
 ]
 
 
